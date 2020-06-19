@@ -1,8 +1,10 @@
 import { buildSchema } from "type-graphql";
-import HelloResolver from "@/modules/hello/resolver";
+import { SetupResolver } from "@/modules/user/Setup";
 import { GraphQLSchema } from "graphql";
+import { SecretResolver } from "@/modules/secret/SecretResolver";
 
 export const createSchema = (): Promise<GraphQLSchema> =>
   buildSchema({
-    resolvers: [HelloResolver],
+    resolvers: [SetupResolver, SecretResolver],
+    dateScalarMode: "timestamp",
   });

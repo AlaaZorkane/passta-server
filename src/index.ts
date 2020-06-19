@@ -9,8 +9,10 @@ import APP_CONFIG from "./config";
 import { ApolloServer } from "apollo-server-express";
 import express from "express";
 import { createSchema } from "./utils/createSchema";
+import { createConnection } from "typeorm";
 
 async function bootstrap(): Promise<void> {
+  await createConnection();
   const schema = await createSchema();
   const apolloServer = new ApolloServer({ schema });
   const app = express();

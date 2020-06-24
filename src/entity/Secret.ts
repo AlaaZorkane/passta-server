@@ -9,14 +9,14 @@ import {
 import { ObjectType, Field, ID } from "type-graphql";
 
 @ObjectType()
-@Entity()
+@Entity("secrets")
 export class Secret extends BaseEntity {
   @Field(() => ID)
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
   @Field()
-  @Column({ unique: true })
+  @Column()
   name: string;
 
   @Field({ nullable: true })

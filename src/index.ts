@@ -14,7 +14,7 @@ import { createConnection } from "typeorm";
 async function bootstrap(): Promise<void> {
   await createConnection();
   const schema = await createSchema();
-  const apolloServer = new ApolloServer({ schema });
+  const apolloServer = new ApolloServer({ schema, context: ({ req, res }) => ({ req, res }) });
   const app = express();
   apolloServer.applyMiddleware({ app, cors: false });
   app.listen(APP_CONFIG.PORT, () => {

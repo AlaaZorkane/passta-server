@@ -8,7 +8,7 @@ export class SetupInput implements Partial<User> {
   @Length(6, 32)
   username: string;
 
-  @Field()
+  @Field({ description: "Master password" })
   @MinLength(8)
-  password: string;
+  master: string;
 }

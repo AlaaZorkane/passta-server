@@ -9,12 +9,15 @@ export class SetupResolver {
   ping(): string {
     return "pong!";
   }
-  @Mutation(() => User)
-  async setup(@Arg("data") { username, password }: SetupInput): Promise<User> {
-    const hashedPassword = await bcrypt.hash(password, 10);
+  @Mutation(() => User, { nullable: true })
+  async setup(@Arg("data") { username, master }: SetupInput): Promise<User | null> {
+    const alreadySetup = await User.findOne(1);
+    if (alreadySetup) throw new Error("setup already done");
+    const hashedMaster = await bcrypt.hash(master, 10);
     const user = await User.create({
+      id: 1,
       username,
-      password: hashedPassword,
+      master: hashedMaster,
     }).save();
     return user;
   }

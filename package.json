@@ -37,7 +37,7 @@
   "dependencies": {
     "apollo-server-express": "^2.15.0",
     "bcrypt": "^5.0.0",
-    "class-validator": "^0.12.2",
+    "class-validator": "^0.14.0",
     "express": "^4.17.1",
     "graphql": "^15.1.0",
     "paseto": "^1.0.6",
